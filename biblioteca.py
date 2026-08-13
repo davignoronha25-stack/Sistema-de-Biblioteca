@@ -45,3 +45,10 @@ def cadastrar_livro(livros):
 
     print("\nLivro cadastro com sucesso!")
     return livro
+
+def listar_livros(livros):
+    print("\n===LISTA DE LIVROS===")
+
+    if len(livros)==0:
+        print("Nenhum livro cadastrado.")
+        

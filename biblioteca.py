@@ -1,27 +1,20 @@
 import csv
 
-NOME_ARQUIVO = "livros.csv"
-
+ARQUIVO = "livros.csv"
 
 def carregar_livros():
     livros = []
 
     try:
-        with open(NOME_ARQUIVO, "r", newline="", encoding="utf-8") as arquivo:
+        with open(ARQUIVO, "r", newline="", encoding="utf-8") as arquivo:
             leitor = csv.DictReader(arquivo)
-
-            for livro in leitor:
-                livros.append(livro)
-
+            for livros in leitor:
+                livros.append(livros)
     except FileNotFoundError:
         pass
 
     return livros
+
 def salvar_livros(livros):
-    with open(NOME_ARQUIVO, "w", newline="", encoding="utf-8") as arquivo:
-        campos = ["titulo", "autor", "ano", "codigo", "status"]
-
-        escritor = csv.DictWriter(arquivo, fieldnames=campos)
-
-        escritor.writeheader()
-        escritor.writerows(livros)
+    with open(ARQUIVO, "w", newline="", encoding="utf-8") as arquivo:
+        campos = ["título", "autor", "ano", "código", "status"]

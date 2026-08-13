@@ -126,3 +126,14 @@ def devolver_livro(livros):
 
     print("Livro não encontrado.")
     return False
+
+def ordenar_livros(livros):
+    print("\n===ORDENAR LIVROS===")
+    print("1 - Por título")
+    print("2 - Por autor")
+    print("3 - Por ano")
+
+    opcao = input("\nEscolha uma opção: ")
+
+    if opcao=="1":
+        livros.sort(key=lambda livro: livro["autor"].lower())

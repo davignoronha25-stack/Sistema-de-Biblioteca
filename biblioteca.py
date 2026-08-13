@@ -32,18 +32,18 @@ def cadastrar_livro(livros):
     codigo=input("Digite o código/ISBN: ")
 
     livro = {
-        "Título": titulo,
-        "Autor": autor,
-        "Ano": ano,
-        "Código": codigo,
-        "Status": "Disponivel"
+        "título": titulo,
+        "autor": autor,
+        "ano": ano,
+        "código": codigo,
+        "status": "Disponivel"
 
     }
 
     livros.append(livro)
     salvar_livros(livros)
 
-    print("\nLivro cadastro com sucesso!")
+    print("\nlivro cadastrado com sucesso!")
     return livro
 
 def listar_livros(livros):
@@ -55,11 +55,11 @@ def listar_livros(livros):
 
     for livro in livros:
         print("------------------------")
-        print("Título: ", livro["título"])
-        print("Autor: ", livro["autor"])
-        print("Ano: ", livro["ano"])
-        print("Código: ", livro["codigo"])
-        print("Status: ", livro["status"])
+        print("título: ", livro["título"])
+        print("autor: ", livro["autor"])
+        print("ano: ", livro["ano"])
+        print("código: ", livro["código"])
+        print("status: ", livro["status"])
 
     return True
 
@@ -81,11 +81,11 @@ def buscar_livros(livros):
 
         for livro in encontrados:
             print("-----------------------")
-            print("Título: ", livro["título"])
-            print("Autor: ", livro["autor"])
-            print("Ano: ", livro["ano"])
-            print("Código: ", livro["código"])
-            print("Status: ", livro["status"])
+            print("título: ", livro["título"])
+            print("autor: ", livro["autor"])
+            print("ano: ", livro["ano"])
+            print("código: ", livro["código"])
+            print("status: ", livro["status"])
 
     return encontrados
 
@@ -93,20 +93,20 @@ def emprestar_livro(livros):
     codigo = input("\n Digite o código/ISBN do livro: ")
 
     for livro in livros:
-        if livro["codigo"] == codigo:
+        if livro["código"] == codigo:
 
             if livro["status"] == "emprestado":
                 print("Esse livro já está emprestado.")
                 return False
 
-            livro["Status"] = "emprestado"
+            livro["status"] = "emprestado"
             salvar_livros(livros)
 
-            print("Empréstimo registrado com sucesso!")
-            return True
+        print("Empréstimo registrado com sucesso!")
+        return True
 
-        print("Livro não encontrado.")
-        return False
+    print("Livro não encontrado.")
+    return False
 
 def devolver_livro(livros):
     codigo = input("\nDigite o código/ISBN do livro: ")
@@ -136,4 +136,64 @@ def ordenar_livros(livros):
     opcao = input("\nEscolha uma opção: ")
 
     if opcao=="1":
+        livros.sort(key=lambda livro: livro["titulo"].lower())
+        print("\nlivros ordenados por título.")
+
+    elif opcao=="2":
         livros.sort(key=lambda livro: livro["autor"].lower())
+        print("\nlivros ordenados por autor.")
+
+    elif opcao=="3":
+        livros.sort(key=lambda livro: livro["ano"].lower())
+        print("\nlivros ordenados por ano.")
+
+    else:
+        print("\nOpção inválida.")
+        return False
+
+    listar_livros(livros)
+    return True
+
+def main():
+    livros=carregar_livros()
+
+    while True:
+        print("\n========================================")
+        print("      MENU PRINCIPAL: BIBLIOTECA")
+        print("========================================")
+        print("1- Cadastrar livro")
+        print("2- Emprestar livro")
+        print("3- Devolver livro")
+        print("4- Listar livros")
+        print("5- Buscar livro")
+        print("6- Ordenar livros")
+        print("7- Sair")
+
+        opcao = input("\n Escolha uma opção: ")
+
+        if opcao=="1":
+            cadastrar_livro(livros)
+
+        elif opcao=="2":
+            emprestar_livro(livros)
+
+        elif opcao=="3":
+            devolver_livro(livros)
+
+        elif opcao=="4":
+            listar_livros(livros)
+
+        elif opcao=="5":
+            buscar_livros(livros)
+
+        elif opcao=="6":
+            ordenar_livros(livros)
+
+        elif opcao=="7":
+            print("\nPrograma encerrado.")
+            break
+
+        else:
+            print("\nOpção inválida.")
+
+main()

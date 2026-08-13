@@ -51,4 +51,40 @@ def listar_livros(livros):
 
     if len(livros)==0:
         print("Nenhum livro cadastrado.")
-        
+        return False
+
+    for livro in livros:
+        print("------------------------")
+        print("Título: ", livro["título"])
+        print("Autor: ", livro["autor"])
+        print("Ano: ", livro["ano"])
+        print("Código: ", livro["codigo"])
+        print("Status: ", livro["status"])
+
+    return True
+
+def buscar_livros(livros):
+    termo=input("\nDigite o título ou autor que deseja buscar: ")
+
+    encontrados = []
+
+    for livro in livros:
+        if (termo.lower()in livro["título"].lower()or
+                termo.lower()in livro["autor"].lower()):
+
+            encontrados.append(livro)
+
+    if len(encontrados) == 0:
+        print("\nNenhum livro encontrado.")
+    else:
+        print("\n===Livros Encontrados===")
+
+        for livro in encontrados:
+            print("-----------------------")
+            print("Título: ", livro["título"])
+            print("Autor: ", livro["autor"])
+            print("Ano: ", livro["ano"])
+            print("Código: ", livro["código"])
+            print("Status: ", livro["status"])
+
+    return encontrados

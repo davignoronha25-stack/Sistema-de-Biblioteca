@@ -88,3 +88,23 @@ def buscar_livros(livros):
             print("Status: ", livro["status"])
 
     return encontrados
+
+def emprestar_livro(livros):
+    codigo = input("\n Digite o código/ISBN do livro: ")
+
+    for livro in livros:
+        if livro["codigo"] == codigo:
+
+            if livro["status"] == "emprestado":
+                print("Esse livro já está emprestado.")
+                return False
+
+            livro["Status"] = "emprestado"
+            salvar_livros(livros)
+
+            print("Empréstimo registrado com sucesso!")
+            return True
+
+        print("Livro não encontrado.")
+        return False
+    

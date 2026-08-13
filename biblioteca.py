@@ -107,4 +107,22 @@ def emprestar_livro(livros):
 
         print("Livro não encontrado.")
         return False
-    
+
+def devolver_livro(livros):
+    codigo = input("\nDigite o código/ISBN do livro: ")
+
+    for livro in livros:
+        if livro["código"] == codigo:
+
+            if livro["status"] == "disponível":
+                print("Esse livro já está disponível.")
+                return False
+
+            livro["status"] = "disponivel"
+            salvar_livros(livros)
+
+            print("Devolução registrada com sucesso!")
+            return True
+
+    print("Livro não encontrado.")
+    return False
